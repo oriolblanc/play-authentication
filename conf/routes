@@ -7,6 +7,9 @@ GET     /                                       Application.index
 GET     /posts/{id}                             Application.show
 POST    /posts/{postId}/comments                Application.postComment
 
+# Import CRUD routes
+*      /admin              module:crud
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

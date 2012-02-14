@@ -4,6 +4,8 @@ import java.util.*;
 import javax.persistence.*;
  
 import play.db.jpa.*;
+import play.mvc.*;
+import play.*;
  
 @Entity
 public class Comment extends Model {
