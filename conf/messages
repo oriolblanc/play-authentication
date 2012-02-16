@@ -2,3 +2,6 @@
 # For example, for French create a messages.fr file
 #
 isAdmin=User is admin
+secure.username=Email:
+secure.password=Password:
+secure.signin=Log in now
