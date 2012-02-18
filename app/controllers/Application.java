@@ -2,8 +2,14 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
+import play.mvc.Scope.Session;
+import play.modules.facebook.FbGraph;
+import play.modules.facebook.FbGraphException;
+import play.modules.facebook.Parameter;
 
 import java.util.*;
+
+import com.google.gson.JsonObject;
 
 import models.*;
 import play.data.validation.*;
@@ -35,5 +41,26 @@ public class Application extends Controller {
         post.addComment(author, content);
         flash.success("Thanks for posting %s", author);
         show(postId);
+    }
+    
+    public static void facebookLogin() {
+        try {
+            JsonObject profile = FbGraph.getObject("me"); // fetch the logged in user
+            String email = profile.get("email").getAsString(); // retrieve the email
+            // do useful things
+            Session.current().put("username", email); // put the email into the session (for the Secure module)
+        } catch (FbGraphException fbge) {
+            flash.error(fbge.getMessage());
+            if (fbge.getType() != null && fbge.getType().equals("OAuthException")) {
+                Session.current().remove("username");
+            }
+        }
+        index();
+    }
+
+    public static void facebookLogout() {
+        Session.current().remove("username");
+        FbGraph.destroySession();
+        index();
     }
 }

@@ -4,9 +4,13 @@
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="src" path="secure"/>
 	<classpathentry kind="src" path="crud"/>
+	<classpathentry kind="src" path="fbgraph-0.4"/>
 	
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/Applications/play-1.2.4/framework/play-1.2.4.jar" sourcepath="/Applications/play-1.2.4/framework/src" />
+	<classpathentry kind="lib" path="/Users/oriolblanc/Development/yabe/lib/restfb-1.6.9.jar"/>
+	<classpathentry kind="lib" path="/Applications/play-1.2.4/modules/fbgraph-0.4/lib/play-fbgraph.jar"/>
+	<classpathentry kind="lib" path="/Applications/play-1.2.4/modules/fbgraph-0.4/lib/restfb-1.6.9.jar"/>
 	<classpathentry kind="lib" path="/Applications/play-1.2.4/framework/lib/activation-1.1.1.jar"/>
 	<classpathentry kind="lib" path="/Applications/play-1.2.4/framework/lib/antlr-2.7.6.jar"/>
 	<classpathentry kind="lib" path="/Applications/play-1.2.4/framework/lib/asm-all-3.3.1.jar"/>

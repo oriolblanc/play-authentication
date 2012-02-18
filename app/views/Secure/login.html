@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+
+#{fbg.scriptAsync /}
+<fb:login-button onlogin="facebookLogin();"></fb:login-button>
+
+<script type="text/javascript">
+    function facebookLogin() {
+        // get current login status from facebook.com
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                // the user is logged in and connected to your app
+                window.location = "@{Application.facebookLogin()}";
+            } else {
+                window.location = "@{Application.facebookLogout()}";
+            }
+         });
+    }
+</script>

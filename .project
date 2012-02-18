@@ -21,5 +21,7 @@
 <link><name>crud</name><type>2</type><location>/Applications/play-1.2.4/modules/crud/app</location></link>
 <link><name>conf/crud</name><type>2</type><location>/Applications/play-1.2.4/modules/crud/conf</location></link>
 <link><name>public/crud</name><type>2</type><location>/Applications/play-1.2.4/modules/crud/public</location></link>
+<link><name>fbgraph-0.4</name><type>2</type><location>/Applications/play-1.2.4/modules/fbgraph-0.4/app</location></link>
+<link><name>conf/fbgraph-0.4</name><type>2</type><location>/Applications/play-1.2.4/modules/fbgraph-0.4/conf</location></link>
 </linkedResources>
 </projectDescription>
