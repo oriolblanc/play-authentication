@@ -1,7 +1,6 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
-
 #{fbg.scriptAsync /}
-<fb:login-button onlogin="facebookLogin();"></fb:login-button>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+<fb:login-button scope="email,user_birthday,read_stream,publish_stream" onlogin="facebookLogin();"></fb:login-button>
 
 <script type="text/javascript">
     function facebookLogin() {
