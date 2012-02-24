@@ -14,19 +14,19 @@ public class User extends Model {
     public String email;
 	
 	@Required
-    public String password;
+    public String fbid;
 	
     public String fullname;
     public boolean isAdmin;
     
-    public User(String email, String password, String fullname) {
+    public User(String email, String fbid, String fullname) {
         this.email = email;
-        this.password = password;
+        this.fbid = fbid;
         this.fullname = fullname;
     }
     
-    public static User connect(String email, String password) {
-        return find("byEmailAndPassword", email, password).first();
+    public static User connect(String email, String fbid) {
+        return find("byEmailAndFbid", email, fbid).first();
     }
     
     public String toString() {

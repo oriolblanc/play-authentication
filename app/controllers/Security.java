@@ -2,10 +2,17 @@ package controllers;
  
 import models.*;
  
-public class Security extends Secure.Security {
-	
-	static boolean authenticate(String username, String password) {
-	    return User.connect(username, password) != null;
+public class Security extends Secure.Security 
+{	
+	static boolean authenticate(String email, String fbid) 
+	{
+	    boolean userIsInOurSystem = User.connect(email, fbid) != null;
+	    
+	    if(!userIsInOurSystem)
+	    {
+	    	new User(email, fbid, null).save();
+	    }
+	    return true;
 	}
     
 	static void onDisconnected() {

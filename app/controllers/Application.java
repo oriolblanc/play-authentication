@@ -26,7 +26,6 @@ public class Application extends Controller {
         Post frontPost = Post.find("order by postedAt desc").first();
         List<Post> olderPosts = Post.find("order by postedAt desc").from(1).fetch(10);
         render(frontPost, olderPosts);
-        Logger.debug("A log message");
     }
     
     public static void show(Long id) {
@@ -45,8 +44,10 @@ public class Application extends Controller {
     }
     
     public static void facebookLogin() {
+    	Logger.info("entra a la funcio");
         try {
             JsonObject profile = FbGraph.getObject("me"); // fetch the logged in user
+            Logger.info("info %s", profile.get("email"));
             String email = profile.get("email").getAsString(); // retrieve the email
             // do useful things
             Session.current().put("username", email); // put the email into the session (for the Secure module)

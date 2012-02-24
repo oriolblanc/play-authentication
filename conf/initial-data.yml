@@ -1,14 +1,20 @@
 # Test data
 
+User(oriol):
+    email:          bob@gmail.com
+    fbid:           secret
+    fullname:       Bob
+    isAdmin:        true
+    
 User(bob):
     email:          bob@gmail.com
-    password:       secret
+    fbid:           secret
     fullname:       Bob
     isAdmin:        true
     
 User(jeff):
     email:          jeff@gmail.com
-    password:       secret
+    fbid:           secret
     fullname:       Jeff    
     
 Post(firstBobPost):
