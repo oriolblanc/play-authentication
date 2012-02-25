@@ -4,13 +4,13 @@ import models.*;
  
 public class Security extends Secure.Security 
 {	
-	static boolean authenticate(String email, String fbid) 
+	static boolean authenticate(String fbid, String oauth) 
 	{
-	    boolean userIsInOurSystem = User.connect(email, fbid) != null;
+	    boolean userIsInOurSystem = User.connect(fbid, oauth) != null;
 	    
 	    if(!userIsInOurSystem)
 	    {
-	    	new User(email, fbid, null).save();
+	    	new User(fbid, oauth).save();
 	    }
 	    return true;
 	}

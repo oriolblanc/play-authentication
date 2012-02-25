@@ -16,17 +16,19 @@ public class User extends Model {
 	@Required
     public String fbid;
 	
+	@Required
+    public String oauth;
+	
     public String fullname;
     public boolean isAdmin;
     
-    public User(String email, String fbid, String fullname) {
-        this.email = email;
+    public User(String fbid, String oauth) {
         this.fbid = fbid;
-        this.fullname = fullname;
+        this.oauth = oauth;
     }
     
-    public static User connect(String email, String fbid) {
-        return find("byEmailAndFbid", email, fbid).first();
+    public static User connect(String fbid, String oauth) {
+        return find("byFbidAndOath", fbid, oauth).first();
     }
     
     public String toString() {

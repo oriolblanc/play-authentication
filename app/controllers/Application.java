@@ -24,6 +24,7 @@ public class Application extends Controller {
 
     public static void index() {
         Post frontPost = Post.find("order by postedAt desc").first();
+        new User("asdasd", "asdad").save();
         List<Post> olderPosts = Post.find("order by postedAt desc").from(1).fetch(10);
         render(frontPost, olderPosts);
     }
@@ -47,7 +48,8 @@ public class Application extends Controller {
     	Logger.info("entra a la funcio");
         try {
             JsonObject profile = FbGraph.getObject("me"); // fetch the logged in user
-            Logger.info("info %s", profile.get("email"));
+            Logger.info("fbid %s", profile.get("fbid"));
+            Logger.info("oauth %s", profile.get("fbid"));
             String email = profile.get("email").getAsString(); // retrieve the email
             // do useful things
             Session.current().put("username", email); // put the email into the session (for the Secure module)
