@@ -11,11 +11,6 @@ import play.data.validation.*;
  
 @Entity
 public class User extends Model {
- 
-	@Email
-	@Required
-    public String email;
-	
 	@Required
     public String fbid;
 	
@@ -50,7 +45,7 @@ public class User extends Model {
     }
     
     public String toString() {
-        return email;
+        return fbid;
     }
     
     public String getFullName()
