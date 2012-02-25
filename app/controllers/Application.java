@@ -24,7 +24,6 @@ public class Application extends Controller {
 
     public static void index() {
         Post frontPost = Post.find("order by postedAt desc").first();
-        new User("asdasd", "asdad").save();
         List<Post> olderPosts = Post.find("order by postedAt desc").from(1).fetch(10);
         render(frontPost, olderPosts);
     }
@@ -48,22 +47,30 @@ public class Application extends Controller {
     	Logger.info("entra a la funcio");
         try {
             JsonObject profile = FbGraph.getObject("me"); // fetch the logged in user
-            Logger.info("fbid %s", profile.get("fbid"));
-            Logger.info("oauth %s", profile.get("fbid"));
-            String email = profile.get("email").getAsString(); // retrieve the email
-            // do useful things
-            Session.current().put("username", email); // put the email into the session (for the Secure module)
+            
+            FacebookUser facebookUser = new FacebookUser(profile);
+            User loggedUser = new User(facebookUser.fbid, FbGraph.getAccessToken());
+            loggedUser.setFacebookUser(facebookUser);
+            
+            boolean authenticated = Security.authenticate(loggedUser.fbid, loggedUser.oauth);
+            
+            if(authenticated)
+            {
+            	facebookUser.save();
+            	loggedUser.save();
+                Session.current().put("fbid", loggedUser.fbid); // put the email into the session (for the Secure module)
+            }
         } catch (FbGraphException fbge) {
             flash.error(fbge.getMessage());
             if (fbge.getType() != null && fbge.getType().equals("OAuthException")) {
-                Session.current().remove("username");
+                Session.current().remove("fbid");
             }
         }
         index();
     }
 
     public static void facebookLogout() {
-        Session.current().remove("username");
+        Session.current().remove("fbid");
         FbGraph.destroySession();
         index();
     }

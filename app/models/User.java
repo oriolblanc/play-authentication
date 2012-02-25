@@ -2,7 +2,10 @@ package models;
  
 import java.util.*;
 import javax.persistence.*;
+
+import com.google.gson.JsonObject;
  
+import play.Logger;
 import play.db.jpa.*;
 import play.data.validation.*;
  
@@ -19,19 +22,39 @@ public class User extends Model {
 	@Required
     public String oauth;
 	
-    public String fullname;
+	@Required
+	@OneToOne
+    public FacebookUser facebookUser;
+    
     public boolean isAdmin;
     
     public User(String fbid, String oauth) {
+    	Logger.info("user logged with fbid:%s and accesstoken: %s", fbid, oauth);
         this.fbid = fbid;
         this.oauth = oauth;
     }
+  
+    public User(JsonObject profile) {
+        this(profile.get("id").getAsString(), "");
+        FacebookUser facebookUser = new FacebookUser(profile);
+        this.setFacebookUser(facebookUser);
+    }
+    
+    public void setFacebookUser(FacebookUser facebookUser)
+    {
+    	this.facebookUser = facebookUser;
+    }
     
     public static User connect(String fbid, String oauth) {
-        return find("byFbidAndOath", fbid, oauth).first();
+        return find("byFbid", fbid).first();
     }
     
     public String toString() {
         return email;
+    }
+    
+    public String getFullName()
+    {
+    	return facebookUser.fullname;
     }
 }
